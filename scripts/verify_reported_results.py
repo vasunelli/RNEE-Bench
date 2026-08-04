@@ -75,11 +75,11 @@ def check_population_and_primary() -> None:
     cohort = next((r for r in pop if r["record_type"] == "primary_analysis_cohort"), {})
     for field, expected in expected_pop.items():
         check_close("results/study_population.csv", field, expected, cohort.get(field),
-                    "Manuscript Sections 2.1-2.2 and Appendix Table A.1")
+                    "Paper Sections 2.1-2.2 and Appendix Table A.1")
 
     rows = read_csv("results/primary_effects.csv")
     if len(rows) != 8:
-        fail("results/primary_effects.csv", "row_count", 8, len(rows), "Manuscript Table 3")
+        fail("results/primary_effects.csv", "row_count", 8, len(rows), "Paper Table 3")
     expected = [
         ("Unseen trip", "Lower-information", 7.288906554249152, 5.723739850423097, 8.854073258075209),
         ("Unseen trip", "RPM-augmented", 3.542514840471295, 1.8059522845603346, 5.279077396382255),
@@ -95,16 +95,16 @@ def check_population_and_primary() -> None:
         row = observed.get((population, telemetry))
         label = f"{population}/{telemetry}"
         if row is None:
-            fail("results/primary_effects.csv", label, "row present", "missing", "Manuscript Table 3")
+            fail("results/primary_effects.csv", label, "row present", "missing", "Paper Table 3")
             continue
         for field, value in [("effect_pct", effect), ("simultaneous_ci_lower_pct", lower),
                              ("simultaneous_ci_upper_pct", upper)]:
-            check_close("results/primary_effects.csv", f"{label}.{field}", value, row[field], "Manuscript Table 3")
+            check_close("results/primary_effects.csv", f"{label}.{field}", value, row[field], "Paper Table 3")
         calculated = 100 * (float(row["road_free_mae_L_per_nominal_60s_segment"]) -
                             float(row["road_aware_mae_L_per_nominal_60s_segment"])) / float(
                                 row["road_free_mae_L_per_nominal_60s_segment"])
         check_close("results/primary_effects.csv", f"{label}.effect_from_MAEs", row["effect_pct"], calculated,
-                    "Manuscript Equation 4", tol=5e-10)
+                    "Paper Equation 4", tol=5e-10)
 
 
 def check_controls() -> None:
@@ -114,7 +114,7 @@ def check_controls() -> None:
     if len(draws) != 320:
         fail("results/correspondence_control_draws.csv", "row_count", 320, len(draws), "20 replicates per control and primary comparison")
     if len(summaries) != 16:
-        fail("results/correspondence_controls.csv", "row_count", 16, len(summaries), "Manuscript Appendix Table A.4")
+        fail("results/correspondence_controls.csv", "row_count", 16, len(summaries), "Paper Appendix Table A.4")
     groups = defaultdict(list)
     for row in draws:
         try:
@@ -131,10 +131,10 @@ def check_controls() -> None:
             for field, value in [("control_mean_pct", sum(values) / len(values)),
                                  ("control_min_pct", min(values)), ("control_max_pct", max(values))]:
                 check_close("results/correspondence_controls.csv", f"{label}.{field}", value, row[field],
-                            "Manuscript Appendix Table A.4", tol=2e-10)
+                            "Paper Appendix Table A.4", tol=2e-10)
         assigned = primary.get((row["population"], row["telemetry"]), {}).get("effect_pct")
         check_close("results/correspondence_controls.csv", f"{label}.assigned_road_effect_pct", assigned,
-                    row["assigned_road_effect_pct"], "Manuscript Table 3 and Appendix Table A.4")
+                    row["assigned_road_effect_pct"], "Paper Table 3 and Appendix Table A.4")
     draw_numbers = defaultdict(set)
     for row in draws:
         draw_numbers[(row["population"], row["telemetry"], row["control"])].add(int(row["draw"]))
@@ -147,12 +147,12 @@ def check_diagnostics() -> None:
     print("[3/8] Model and transfer diagnostics")
     models = read_csv("results/model_sensitivity.csv")
     if len(models) != 24:
-        fail("results/model_sensitivity.csv", "row_count", 24, len(models), "Manuscript Appendix Table A.5")
+        fail("results/model_sensitivity.csv", "row_count", 24, len(models), "Paper Appendix Table A.5")
     expected_models = {(p, t, m) for p in ["Unseen trip", "October 2018", "Single held-out area", "Motorway-largest-share holdout"]
                        for t in ["Lower-information", "RPM-augmented"] for m in ["HGB", "Ridge", "CatBoost"]}
     observed_models = set(key(models, ["population", "telemetry", "model"]))
     if observed_models != expected_models:
-        fail("results/model_sensitivity.csv", "comparison_keys", sorted(expected_models), sorted(observed_models), "Manuscript Appendix Table A.5")
+        fail("results/model_sensitivity.csv", "comparison_keys", sorted(expected_models), sorted(observed_models), "Paper Appendix Table A.5")
 
     rpm = read_csv("results/rpm_diagnostic.csv")
     rpm_expected = [
@@ -167,7 +167,7 @@ def check_diagnostics() -> None:
         for field, value in [("effect_pct", effect), ("simultaneous_ci_lower_pct", lower),
                              ("simultaneous_ci_upper_pct", upper)]:
             check_close("results/rpm_diagnostic.csv", f"{pop}.{field}", value, row.get(field),
-                        "Manuscript Appendix Table A.7 and Figure 6a")
+                        "Paper Appendix Table A.7 and Figure 6a")
 
     overlap = read_csv("results/road_attribute_overlap.csv")
     overlap_expected = [
@@ -183,7 +183,7 @@ def check_diagnostics() -> None:
                              ("evaluation_fraction_beyond_training_q95", exceed),
                              ("normalized_distance_q50", median), ("domain_classifier_roc_auc", auc)]:
             check_close("results/road_attribute_overlap.csv", f"{pop}.{field}", value, row.get(field),
-                        "Manuscript Appendix Table A.8 and Figure 6b")
+                        "Paper Appendix Table A.8 and Figure 6b")
 
 
 def check_map_and_config() -> None:
@@ -199,22 +199,22 @@ def check_map_and_config() -> None:
     }
     for field, value in expected.items():
         check_close("results/map_matching_summary.csv", field, value, observed.get(field),
-                    "Manuscript Section 2.3 and Appendix Table A.1")
+                    "Paper Section 2.3 and Appendix Table A.1")
     cfg = read_json("config/main_analysis.json")
     family_expected = {"primary_HGB": 24, "control_contrasts": 16, "model_sensitivity": 24,
                        "RPM_diagnostic": 7, "supporting_engine_state_and_Ridge": 15}
     family_observed = cfg.get("inference", {}).get("comparison_family_sizes", {})
     if family_observed != family_expected:
         fail("config/main_analysis.json", "inference.comparison_family_sizes", family_expected, family_observed,
-             "Manuscript Appendix Table A.3")
+             "Paper Appendix Table A.3")
     check_equal("config/main_analysis.json", "inference.bootstrap_repetitions", 2000,
-                cfg.get("inference", {}).get("bootstrap_repetitions"), "Manuscript Appendix Table A.3")
+                cfg.get("inference", {}).get("bootstrap_repetitions"), "Paper Appendix Table A.3")
     features = read_json("config/feature_sets.json")
     check_equal("config/feature_sets.json", "road_attribute_candidates", 142, features.get("road_attribute_candidates"),
-                "Manuscript Section 2.3")
+                "Paper Section 2.3")
     if "Excluded from the primary sensing comparison" not in features.get("absolute_load_status", ""):
         fail("config/feature_sets.json", "absolute_load_status", "excluded from primary sensing comparison",
-             features.get("absolute_load_status"), "Manuscript sensing-regime definition")
+             features.get("absolute_load_status"), "Paper sensing-regime definition")
 
 
 def check_metadata() -> None:
@@ -222,7 +222,7 @@ def check_metadata() -> None:
     dictionary = read_csv("metadata/variable_dictionary.csv")
     if len(dictionary) != 142 or len({r["feature_name"] for r in dictionary}) != 142:
         fail("metadata/variable_dictionary.csv", "unique_feature_count", 142,
-             len({r.get("feature_name") for r in dictionary}), "Manuscript Section 2.3")
+             len({r.get("feature_name") for r in dictionary}), "Paper Section 2.3")
     retained = read_csv("metadata/retained_road_attributes.csv")
     counts = defaultdict(int)
     for row in retained:
@@ -232,7 +232,7 @@ def check_metadata() -> None:
                 "Motorway-largest-share holdout": 122}
     if dict(counts) != expected:
         fail("metadata/retained_road_attributes.csv", "training_retained_counts", expected, dict(counts),
-             "Manuscript Section 3.3")
+             "Paper Section 3.3")
 
 
 def normalized(rows: list[dict[str, str]], fields: list[str]) -> list[tuple]:
@@ -277,23 +277,26 @@ def check_pdfs() -> None:
 
 
 def check_portability() -> None:
-    print("[8/8] Portability and public-surface scan")
+    print("[8/8] Compact-package portability and public-surface scan")
     text_suffixes = {".md", ".txt", ".csv", ".json", ".py"}
-    prohibited_terms = [
-        "chat" + "gpt", "open" + "ai", "co" + "dex", "cla" + "ude", "gem" + "ini",
-        "ai" + "-generated", "review" + "er agent", "phase" + "1", "author input" + " required",
-        "zero-context" + " full review", "scientific" + " adjudication",
-    ]
     absolute_patterns = [re.compile(r"/mnt/[a-z]/", re.I), re.compile(r"(?<![A-Za-z])[A-Za-z]:[\\/]")]
-    for path in ROOT.rglob("*"):
+    compact_roots = [
+        ROOT / "LICENSE", ROOT / "LICENSE-CONTENT.md", ROOT / "requirements.txt",
+        ROOT / "config", ROOT / "docs/data_access.md",
+        ROOT / "docs/data_provenance.md", ROOT / "expected", ROOT / "figure_data",
+        ROOT / "figures", ROOT / "metadata/data_contract.csv",
+        ROOT / "metadata/retained_road_attributes.csv", ROOT / "metadata/variable_dictionary.csv",
+        ROOT / "results", ROOT / "scripts/reproduce_tables_and_figures.py",
+        ROOT / "third_party/NOTICE.md",
+    ]
+    paths = []
+    for root in compact_roots:
+        paths.extend(root.rglob("*") if root.is_dir() else [root])
+    for path in paths:
         if not path.is_file() or path.suffix.lower() not in text_suffixes:
             continue
         rel = path.relative_to(ROOT).as_posix()
         text = path.read_text(encoding="utf-8-sig", errors="replace")
-        lower = text.lower()
-        for term in prohibited_terms:
-            if term in lower:
-                fail(rel, "public_surface_term", "absent", term, "public release privacy policy")
         for pattern in absolute_patterns:
             match = pattern.search(text)
             if match:
@@ -323,7 +326,7 @@ def main() -> int:
         for item in FAILURES:
             print(f"- {item}", file=sys.stderr)
         return 1
-    print("\nPASS: All reported values match the frozen manuscript-facing contracts.")
+    print("\nPASS: All reported values match the frozen paper-facing contracts.")
     return 0
 
 

@@ -1,0 +1,31 @@
+{
+  "artifact_count": 989,
+  "components": {
+    "Phase1_target_diagnostics": {
+      "artifact_count": 24,
+      "total_bytes": 37640525
+    },
+    "SEGMENT_SPLIT_segments_and_splits": {
+      "artifact_count": 171,
+      "total_bytes": 1410995237
+    },
+    "THEORY_VALIDATION_theory_validation": {
+      "artifact_count": 450,
+      "total_bytes": 1027801165
+    },
+    "TRAJECTORY_BUILD_map_matching": {
+      "artifact_count": 111,
+      "total_bytes": 455292794
+    },
+    "TRAJECTORY_BUILD_row_enriched": {
+      "artifact_count": 57,
+      "total_bytes": 2171400539
+    },
+    "workflow_or_documentation": {
+      "artifact_count": 176,
+      "total_bytes": 1548859
+    }
+  },
+  "schema_version": 1,
+  "total_bytes": 5104679119
+}

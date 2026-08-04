@@ -1,0 +1,45 @@
+experiment: SEGMENT_SPLIT
+stage: 500m_sensitivity_split_construction
+sensitivity_name: 500m
+segment_pointer: results/segment_split_segments_500m_latest_pointer.json
+required_segment_status: PASS_SEGMENT_SPLIT_500M_SEGMENT_SENSITIVITY_GATE
+output_root: results/rnee_build
+run_name_prefix: segment_split_splits_500m
+latest_prefix: segment_split_splits_500m
+build_pass_status: PASS_SEGMENT_SPLIT_500M_SPLIT_BUILD
+validation_pass_status: PASS_SEGMENT_SPLIT_500M_SENSITIVITY_SPLITS
+validation_fail_status: FAIL_SEGMENT_SPLIT_500M_SENSITIVITY_SPLITS
+splits:
+  random_trip_blocked:
+    seed: 18201
+    fractions: {train: 0.65, validation: 0.10, calibration: 0.10, test: 0.15}
+  cold_vehicle:
+    seed: 18202
+    fractions: {train: 0.65, validation: 0.10, calibration: 0.10, test: 0.15}
+  cold_trip:
+    seed: 18203
+    minimum_trips_per_vehicle: 4
+    fractions: {train: 0.65, validation: 0.10, calibration: 0.10, test: 0.15}
+  cold_month:
+    train_months: [2017-11, 2017-12, 2018-01, 2018-02, 2018-03, 2018-04, 2018-05, 2018-06, 2018-07]
+    validation_months: [2018-08]
+    calibration_months: [2018-09]
+    test_months: [2018-10]
+    excluded_months: [2018-11]
+  cold_spatial:
+    seed: 18204
+    test_anchor_block: "273_4684"
+    test_target_fraction: 0.08
+    buffer_cells: 1
+    remaining_fractions: {train: 0.80, validation: 0.10, calibration: 0.10, test: 0.00}
+  cold_functional_road_class:
+    seed: 18205
+    heldout_class: motorway
+    remaining_fractions: {train: 0.80, validation: 0.10, calibration: 0.10, test: 0.00}
+support_thresholds:
+  minimum_test_vehicles: 20
+  minimum_test_trips: 200
+  minimum_test_segments: 2000
+  maximum_single_vehicle_test_share: 0.15
+forbidden_model_feature_exact: [VehId, Trip, trip_uid, source_file, segment_id, spatial_block_id, matched_x_m_centroid, matched_y_m_centroid]
+forbidden_model_feature_substrings: [latitude, longitude, route_id, road_id, trip_id, vehicle_id, matched_x, matched_y]

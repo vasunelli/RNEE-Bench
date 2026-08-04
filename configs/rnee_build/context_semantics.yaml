@@ -1,0 +1,136 @@
+experiment: CONTEXT_SEMANTICS
+edge_semantics_pointer: results/edge_semantics_latest_pointer.json
+map_match_pointer: results/map_matching_latest_segmented_raw_pointer.json
+network_pointer: results/network_freeze_latest_network_pointer.json
+historical_source_pbfs:
+  geofabrik_michigan_2017-01-01: source/osm/historical/michigan-170101.osm.pbf
+  geofabrik_michigan_2018-01-01: source/osm/historical/michigan-180101.osm.pbf
+research_bbox_wgs84:
+  min_lon: -84.04709429320224
+  min_lat: 42.0406430428018
+  max_lon: -83.43119598459778
+  max_lat: 42.505462234998205
+map_matching_close_decision: results/map_matching_latest_close_decision.json
+output_root: results/rnee_build
+selected_profile: balanced_final
+storage_crs: EPSG:4326
+metric_crs: EPSG:32617
+scales_m:
+  - 25
+  - 50
+  - 100
+  - 250
+topology_scale_m: 250
+pilot_selection_seed: 178
+object_audit_sample_count: 1000
+trajectory_map_count: 100
+
+drivable_highways:
+  - motorway
+  - motorway_link
+  - trunk
+  - trunk_link
+  - primary
+  - primary_link
+  - secondary
+  - secondary_link
+  - tertiary
+  - tertiary_link
+  - residential
+  - unclassified
+  - living_street
+  - service
+  - road
+
+traffic_controls:
+  highway:
+    - traffic_signals
+    - stop
+    - give_way
+    - crossing
+  railway:
+    - level_crossing
+    - crossing
+  traffic_calming: any
+
+public_transport:
+  highway:
+    - bus_stop
+  public_transport:
+    - platform
+    - station
+    - stop_position
+  railway:
+    - station
+    - halt
+
+poi_taxonomy:
+  transport:
+    amenity:
+      - fuel
+      - charging_station
+      - bus_station
+      - parking
+  commercial:
+    tag_presence:
+      - shop
+    amenity:
+      - restaurant
+      - cafe
+      - fast_food
+      - bank
+  education:
+    amenity:
+      - school
+      - university
+      - college
+      - kindergarten
+  health:
+    amenity:
+      - hospital
+      - clinic
+      - doctors
+      - pharmacy
+  leisure:
+    tag_presence:
+      - leisure
+    amenity:
+      - cinema
+      - theatre
+  parking:
+    amenity:
+      - parking
+      - parking_entrance
+  other:
+    tag_presence:
+      - amenity
+      - tourism
+      - office
+
+poi_priority:
+  - transport
+  - commercial
+  - education
+  - health
+  - leisure
+  - parking
+  - other
+
+built_environment:
+  building_tag: building
+  landuse_tag: landuse
+  coverage_scales_m:
+    - 100
+    - 250
+  simple_closed_ways_only: true
+
+qa:
+  object_duplicate_count_max: 0
+  monotonic_count_violation_max: 0
+  metric_crs_required: EPSG:32617
+  minimum_object_audit_rows: 1000
+  minimum_trajectory_maps: 100
+  minimum_building_polygon_count: 1
+  minimum_landuse_polygon_count: 1
+  minimum_nonzero_building_coverage_rows: 1
+  minimum_nonzero_landuse_coverage_rows: 1

@@ -1,0 +1,151 @@
+contract_version: rnee_fields_v0.1.0
+source_of_truth: official VED dynamic/static data plus historically frozen OSM and Valhalla outputs
+
+stable_identity_fields:
+  source_file:
+    definition: official extracted VED weekly CSV filename
+    model_use: prohibited
+  source_sha256:
+    definition: SHA-256 of the official extracted source CSV
+    model_use: prohibited
+  source_row_number:
+    definition: zero-based data-row number after the header
+    model_use: prohibited
+  row_id:
+    definition: sha256(source_sha256 + ":" + source_row_number)
+    model_use: prohibited
+  trip_uid:
+    definition: stable technical code from official VehId, Trip, and source chronology
+    model_use: grouping_and_qa_only
+
+raw_trajectory_fields:
+  VehId:
+    provenance: VED_dynamic
+    model_use: prohibited
+  Trip:
+    provenance: VED_dynamic
+    model_use: prohibited
+  Timestamp_ms:
+    provenance: VED_dynamic
+    preserved_alias: timestamp_ms_raw
+  Latitude:
+    provenance: VED_dynamic
+    preserved_alias: latitude_raw
+    model_use: prohibited
+  Longitude:
+    provenance: VED_dynamic
+    preserved_alias: longitude_raw
+    model_use: prohibited
+
+target_fields:
+  fuel_volume_L:
+    scope: ICE_HEV_PHEV
+    definition: direct Fuel Rate integration with MAF fallback and explicit provenance
+    model_use: target_only
+  fuel_source:
+    values: [direct, maf, missing]
+    model_use: qa_only
+  battery_terminal_net_Wh:
+    scope: PHEV_EV
+    definition: negative HV Current times HV Voltage times valid interval duration divided by 3600
+    sign: positive_discharge_negative_charge_or_regeneration
+    model_use: target_only
+  dt_seconds:
+    model_use: target_construction_and_qa
+  dt_valid:
+    model_use: target_construction_and_qa
+  target_exclusion_reason:
+    model_use: qa_only
+
+map_matching_fields:
+  match_status: {model_use: qa_only}
+  match_type: {model_use: qa_only}
+  matched_latitude: {model_use: prohibited}
+  matched_longitude: {model_use: prohibited}
+  matched_edge_id: {model_use: prohibited}
+  matched_way_id: {model_use: prohibited}
+  matched_edge_index: {model_use: qa_only}
+  distance_from_trace_point_m: {model_use: qa_only}
+  distance_along_edge: {model_use: qa_only}
+  begin_route_discontinuity: {model_use: qa_only}
+  end_route_discontinuity: {model_use: qa_only}
+  match_warning_code: {model_use: qa_only}
+  match_parameter_profile: {model_use: qa_only}
+  osm_snapshot_id: {model_use: split_and_qa_only}
+  valhalla_version: {model_use: provenance_only}
+
+semantic_namespaces:
+  road_function:
+    fields:
+      osm_highway:
+        definition: raw OpenStreetMap highway tag
+      valhalla_road_class:
+        definition: Valhalla normalized network hierarchy
+      functional_road_class:
+        definition: published RNEE mapping from osm_highway, preserving mapping version
+    rule: Never use speed-limit provenance as a road-function class.
+  speed_management:
+    fields:
+      speed_limit_kmh_observed:
+        definition: parsed explicit or directional OSM speed value
+      speed_limit_kmh_inferred:
+        definition: inferred value with explicit rule and version
+      speed_limit_kmh_used:
+        definition: selected analysis value retaining observed/inferred provenance
+      speed_limit_source:
+        values: [explicit, directional, advisory, practical, default, missing]
+      speed_limit_is_inferred:
+        values: [true, false]
+  physical_structure:
+    fields: [lanes, oneway, surface, smoothness, access, bridge, tunnel, roundabout, shoulder]
+  geometry_terrain:
+    fields: [edge_length_m, curvature, bearing_change, grade, elevation_m]
+  traffic_control:
+    fields: [traffic_signal, stop, give_way, crossing, traffic_calming, rail_crossing]
+  topology:
+    fields: [node_degree, intersection_density, circuity, orientation_entropy]
+  built_environment:
+    fields: [land_use_fraction, building_density, poi_density, transit_stop_density, poi_diversity]
+  path_composition:
+    fields: [edge_class_sequence, turn_sequence, functional_mix]
+    model_rule: no unique route fingerprint or route identifier
+
+explicitly_forbidden_mappings:
+  - source_field: Class of Speed Limit
+    forbidden_target: road_class
+    reason: Legacy eVED field describes speed-limit source, not functional road class.
+  - source_field: Class of Speed Limit
+    forbidden_target: functional_road_class
+    reason: Functional class must originate from historical OSM/Valhalla road semantics.
+
+prohibited_model_features:
+  - VehId
+  - Trip
+  - source_file
+  - source_sha256
+  - source_row_number
+  - row_id
+  - trip_uid
+  - latitude_raw
+  - longitude_raw
+  - matched_latitude
+  - matched_longitude
+  - matched_edge_id
+  - matched_way_id
+  - road_id
+  - route_id
+  - exact_latitude
+  - exact_longitude
+  - Energy_Consumption
+
+legacy_reference_only_fields:
+  - Energy_Consumption
+  - Matched Latitude
+  - Matched Longitude
+  - Elevation
+  - Speed Limit
+  - Class of Speed Limit
+  - Intersection
+  - Bus Stop
+  - Focus Points
+

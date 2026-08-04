@@ -1,0 +1,10 @@
+stage: NETWORK_FREEZE
+source: original_VED_only
+coordinate_crs: EPSG:4326
+metric_crs_candidate: EPSG:32617
+preserve_raw_coordinates: true
+coordinate_smoothing_default: false
+map_matching_is_primary_correction: true
+invalid_coordinate_policy: flag_not_silent_replace
+trip_jump_policy: flag_for_map_matching_QA
+current_osm_fallback: forbidden

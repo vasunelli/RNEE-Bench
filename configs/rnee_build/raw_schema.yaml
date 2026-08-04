@@ -1,0 +1,36 @@
+project: RNEE-Bench
+stage: SOURCE_INVENTORY
+source:
+  repository: https://github.com/gsoh/VED
+  commit: 6baa4963782d515a67d32a5490bd5d11f5d9bf0d
+  raw_dir: source/ved/raw
+  extracted_dir: source/ved/extracted
+official_files:
+  - VED_DynamicData_Part1.7z
+  - VED_DynamicData_Part2.7z
+  - VED_Static_Data_ICE&HEV.xlsx
+  - VED_Static_Data_PHEV&EV.xlsx
+expected_sha256:
+  VED_DynamicData_Part1.7z: 44d53754fd39e196171ec09f123604375d0248d5c06a97d6695ef0e22a948c61
+  VED_DynamicData_Part2.7z: a235c894e619a9e06b6c28c6e68593e26f4b168265cd2c45a0f3a43e646bc701
+  VED_Static_Data_ICE&HEV.xlsx: addb23d937ef7d943620755f478cc5a24316a7d61dee232ffbfd9b6e50986dae
+  VED_Static_Data_PHEV&EV.xlsx: e0f2b4d7a360074c17fd00068d8d8bf898f0e650f0cdda43c7e10883f6bf9340
+expected_git_blob_sha1:
+  VED_DynamicData_Part1.7z: 047f71f8e9d7282d14bb3b94a2113b663e3c2b15
+  VED_DynamicData_Part2.7z: 100798b2149fcd0d6f7ab555361001def7e36f91
+  VED_Static_Data_ICE&HEV.xlsx: 337898103e1239aa3c1a46200d823e5d20a42039
+  VED_Static_Data_PHEV&EV.xlsx: 04228e4037204cff6010ee1e425a1aa9cc8e6bb7
+dynamic_file_pattern: VED_*_week.csv
+lineage:
+  source_row_number_base: 0
+  row_id_formula: sha256(source_file_sha256 + ":" + source_row_number)
+quality_gates:
+  official_file_count: 4
+  archive_test_failures_max: 0
+  schema_variant_count_max: 1
+  row_id_uniqueness_rate_min: 1.0
+  dynamic_static_vehicle_join_rate_min: 1.0
+notes:
+  - VED is the sole L0 source.
+  - eVED files and derived fields are excluded from this stage.
+  - Static metadata are joined only by official VehId; powertrain is never inferred from sensor missingness.

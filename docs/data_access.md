@@ -1,5 +1,7 @@
 # Data access
 
+The complete derived RNEE release is distributed through the `v0.1.0-full` GitHub Release as three split 7-Zip volumes. Extracting the `.001` volume at the repository root creates `data/`, `predictions/`, `models/` and the two small contract-fixture directories. The instructions below apply only when rebuilding from the upstream raw sources.
+
 ## Vehicle data
 
 The original vehicle inputs are the official VED Dynamic Data and Static Data at commit `6baa4963782d515a67d32a5490bd5d11f5d9bf0d` of the public [VED repository](https://github.com/gsoh/VED). Verify the commit and archive hashes before construction. This package does not redistribute those files.
@@ -22,4 +24,4 @@ DATA_ROOT/
     michigan-2018-01-01.osm.pbf
 ```
 
-`SOURCE_COMMIT.txt` must contain the 40-character VED commit above. Archive and extract without modifying source files. The compact verifier does not require these inputs.
+`SOURCE_COMMIT.txt` must contain the 40-character VED commit above. Archive and extract without modifying source files. Neither the compact verifier nor full released-artifact verifier requires these raw inputs.

@@ -1,0 +1,15 @@
+base_config: configs/rnee_build/context_semantics.yaml
+experiment: TRAJECTORY_BUILD
+stage: chunked_context_production
+status_suffix: TRAJECTORY_BUILD_CHUNKED_CONTEXT_PRODUCTION
+run_name_prefix: trajectory_build_context_production
+latest_prefix: trajectory_build_context_production
+edge_semantics_pointer: results/trajectory_build_edge_production_latest_pointer.json
+map_partition_pointer: results/trajectory_build_map_match_production_latest_pointer.json
+max_rows_per_chunk: 50000
+memory_ceiling_gb: 10.0
+trajectory_map_count: 0
+write_global_row_outputs: false
+require_complete_trip_chunks: true
+require_per_chunk_qa: true
+require_resume_manifest: true

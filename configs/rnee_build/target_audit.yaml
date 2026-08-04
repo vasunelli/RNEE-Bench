@@ -1,0 +1,84 @@
+project: RNEE-Bench
+stage: TARGET_AUDIT
+source:
+  ved_dynamic_dir: source/ved/extracted
+  static_metadata: results/source_inventory_ved_inventory_20260716_220831/static_vehicle_metadata.parquet
+  static_metadata_sha256: 0e28c635ff32b8e4a9b86f63381da80081ae0fdd07c3f65a4af9bf69ff1377d1
+  source_file_inventory: results/source_inventory_ved_inventory_20260716_220831/source_file_inventory.parquet
+  source_file_inventory_sha256: 27f22161551adfc074787f6c0567d30c9c6f7fcb9bd7ce69bb7ac3276bffff52
+  source_inventory_summary: results/source_inventory_ved_inventory_20260716_220831/raw_integrity_summary.json
+  ved_file_pattern: VED_*_week.csv
+reference_only:
+  eved_dynamic_dir: source/legacy_eved
+  eved_file_pattern: eVED_*_week.csv
+  derivation_notebook: source/legacy_eved_code/EnergyConsumptionCalculation.ipynb
+  provenance_reproduction: true
+integration:
+  interval_convention: left_hold_to_next_timestamp
+  minimum_dt_seconds_exclusive: 0.0
+  maximum_dt_seconds_inclusive: 10.0
+  sensitivity_maximum_dt_seconds: [5.0, 10.0, 30.0]
+  report_gap_thresholds_seconds: [0.0, 1.0, 2.0, 5.0, 10.0, 30.0, 60.0]
+fuel:
+  stoichiometric_afr_e10: 14.08
+  nominal_density_g_per_l: 745.0
+  density_sensitivity_g_per_l: [720.0, 745.0, 760.0]
+  trim_policy: mean_available_bank_by_horizon
+  direct_rate_policy: prefer_nonnegative_direct_fuel_rate
+  fallback_policy: maf_only_when_direct_rate_unavailable
+  abs_load_rpm_fallback: prohibited
+  fuel_lhv_kwh_per_l: null
+battery:
+  current_sign_in_source: positive_charge_negative_discharge
+  released_target_sign: positive_discharge_negative_regeneration
+  require_positive_voltage: true
+output:
+  chunk_rows: 250000
+quality_gates:
+  expected_raw_rows: 22436808
+  expected_vehicle_count: 384
+  expected_powertrain_counts:
+    ICE: 264
+    HEV: 93
+    PHEV: 24
+    EV: 3
+  static_join_rate_min: 1.0
+  key_alignment_rate_min: 1.0
+  old_formula_reproduction_abs_tolerance_kwh: 1.0e-10
+  direct_vs_maf_min_overlap_rows: 1000
+  observability:
+    ICE:
+      target: fuel
+      minimum_vehicle_count: 150
+      minimum_valid_interval_coverage: 0.75
+    HEV:
+      target: fuel
+      minimum_vehicle_count: 70
+      minimum_valid_interval_coverage: 0.95
+    PHEV:
+      target: fuel_and_battery
+      minimum_vehicle_count: 10
+      minimum_valid_interval_coverage: 0.95
+    EV:
+      target: battery
+      minimum_vehicle_count: 3
+      minimum_valid_interval_coverage: 0.95
+  plausibility:
+    maf_g_s: [0.0, 500.0]
+    fuel_rate_l_h: [0.0, 100.0]
+    trim_correction: [0.1, 2.0]
+    battery_voltage_v: [50.0, 1000.0]
+    battery_current_abs_a_max: 1500.0
+    battery_power_abs_kw_max: 500.0
+    fuel_l_per_100km_max: 100.0
+    moving_combustion_fuel_l_per_100km_min: 0.1
+    battery_net_wh_per_km_abs_max: 5000.0
+    maximum_out_of_range_rate: 0.001
+    maximum_dt_sensitivity_relative_difference: 0.02
+    maximum_density_sensitivity_relative_span: 0.06
+    minimum_battery_soc_sign_agreement: 0.90
+decision_policy:
+  unified_scalar_requires_common_documented_boundary: true
+  channel_native_physical_targets_allowed: true
+  eved_energy_consumption_as_ground_truth: false
+  fixed_before_downstream_experiments: true

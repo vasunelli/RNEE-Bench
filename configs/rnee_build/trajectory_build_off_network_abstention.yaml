@@ -1,0 +1,12 @@
+experiment: TRAJECTORY_BUILD
+quality_check_form: results/trajectory_build_off_network_candidate_qa_20260717_215604/quality_1_off_network_validation.csv
+output_root: results/rnee_build
+run_name_prefix: trajectory_build_off_network_abstention
+latest_prefix: trajectory_build_off_network_abstention
+allowed_ratings:
+  - abstain
+  - retain
+  - uncertain
+minimum_candidate_precision: 0.85
+require_complete_quality_check: true
+require_zero_uncertain: true

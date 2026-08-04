@@ -1,0 +1,28 @@
+experiment: MODEL_CONTRACT
+stage: M3_primary_add_drop
+m1_pointer: results/model_contract_m1_feature_contract_latest_pointer.json
+m2_pointer: results/model_contract_m2_backbone_smoke_latest_pointer.json
+segment_pointer: results/segment_split_segments_60s_latest_pointer.json
+output_root: results/rnee_build
+run_name_prefix: model_contract_m3_add_drop
+latest_prefix: model_contract_m3_add_drop
+
+# M3 inherits the exact ten cells, seeds, backbone and hyperparameters from the
+# recursively verified M2 frozen protocol.  This config cannot reopen them.
+minimum_train_rows: 500
+memory_ceiling_gb: 12.0
+allow_one_time_test_evaluation: true
+
+test_gate_contract:
+  opening_condition: every one of the 360 prespecified strong-model fits and 10 transparent-reference fits is serialized and hash-verified
+  validation_target_access: prohibited
+  calibration_target_access: prohibited
+  test_target_access: materialize each frozen cell once only after the fit manifest verifies
+  predictions: wide segment-level paired Parquet, one file per cell and seed
+  metrics: raw MAE, RMSE, MedAE and R2 only; inference is deferred to M4
+
+reporting_contract:
+  primary_units: fuel L only, separated by ICE and HEV
+  downgraded: all cold-vehicle cells and all EV/PHEV target cells
+  transparent_reference_claim: STATISTICAL_REFERENCE_NOT_MECHANISTIC
+  prohibited: backbone search, hyperparameter changes, MAPE, sMAPE, legacy eVED metrics, causal claims

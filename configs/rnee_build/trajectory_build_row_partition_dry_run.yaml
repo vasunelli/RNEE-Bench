@@ -1,0 +1,11 @@
+experiment: TRAJECTORY_BUILD-DRYRUN
+base_config: configs/rnee_build/row_assembly.yaml
+map_partition_pointer: results/trajectory_build_map_match_partition_dry_run_latest_pointer.json
+edge_partition_pointer: results/trajectory_build_edge_partition_dry_run_latest_pointer.json
+context_chunk_pointer: results/trajectory_build_context_chunk_dry_run_latest_pointer.json
+output_root: results/rnee_build
+run_name_prefix: trajectory_build_row_partition_dry_run
+latest_prefix: trajectory_build_row_partition_dry_run
+memory_ceiling_gb: 10.0
+sample_interval_seconds: 0.2
+equivalence_baseline_pointer: results/end_to_end_rows_latest_pointer.json

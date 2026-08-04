@@ -1,0 +1,106 @@
+contract_gate:
+  exact_dependency_version_coverage: 1.0
+  source_license_completeness: 1.0
+  repeated_environment_fingerprint_equal: true
+  minimum_free_disk_gb_for_full_build: 150
+
+raw_lineage:
+  official_release_file_count: 4
+  dynamic_file_count: 54
+  dynamic_row_count: 22436808
+  schema_variant_count: 1
+  dynamic_static_join_rate: 1.0
+  duplicate_row_id_count: 0
+
+target:
+  accepted_gate:
+    - PASS_PHYSICAL_TARGET
+    - PASS_OPERATIONAL_TARGET_ONLY
+  segment_minimum_duration_coverage: 0.95
+  require_trip_target_plausible: true
+  target_imputation_allowed: false
+
+gps:
+  valid_coordinate_reason_coverage: 1.0
+  maximum_coordinate_update_speed_kmh: 200
+  report_coordinate_update_speed_exceedances: true
+  sample_and_hold_aware: true
+
+osm_snapshot:
+  historical_only: true
+  research_bbox_buffer_km: 20
+  projected_round_trip_error_m:
+    median_pass_max: 0.05
+    p99_pass_max: 0.5
+  required_raw_way_tags:
+    - highway
+    - maxspeed
+    - source:maxspeed
+    - lanes
+    - oneway
+    - access
+    - surface
+    - smoothness
+    - bridge
+    - tunnel
+    - junction
+    - traffic_calming
+    - lit
+
+map_matching:
+  endpoint: trace_attributes
+  costing: auto
+  input_point_status_coverage:
+    pass_min: 1.0
+  matched_point_cardinality:
+    pass_equal_input: true
+  matched_coverage:
+    pass_min: 0.97
+    quality_check_min: 0.95
+  distance_from_trace_point_m:
+    p50_pass_max: 8
+    p50_quality_check_max: 12
+    p95_pass_max: 25
+    p95_quality_check_max: 40
+    p99_pass_max: 50
+    p99_quality_check_max: 75
+  trip_route_discontinuity_rate:
+    pass_max: 0.02
+    quality_check_max: 0.05
+  silent_fallback_count:
+    pass_max: 0
+  matched_edge_jump_over_500m_within_10s_rate:
+    pass_max: 0.001
+    quality_check_max: 0.005
+  manual_spatial_audit:
+    random_trip_count: 50
+    highest_distance_trip_count: 25
+    complex_geometry_trip_count: 25
+    incorrect_rate_pass_max: 0.05
+
+edge_semantics:
+  speed_limit_provenance_coverage: 1.0
+  functional_road_class_missing_rate:
+    pass_max: 0.02
+    quality_check_max: 0.05
+  speed_limit_kmh_anomaly:
+    below: 5
+    above: 160
+  lane_count_anomaly:
+    below: 1
+    above: 12
+
+row_assembly:
+  input_output_row_ratio: 1.0
+  duplicate_row_id_count: 0
+  status_reason_coverage: 1.0
+  exact_coordinate_as_model_feature: false
+  entity_identifier_as_model_feature: false
+
+segments_and_splits:
+  construct_non_overlapping_segments_before_split: true
+  split_entity_overlap_max: 0
+  fit_preprocessing_on_train_only: true
+  calibration_used_for_training_or_tuning: false
+  test_evaluation_count: 1
+

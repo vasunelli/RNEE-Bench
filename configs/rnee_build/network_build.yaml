@@ -1,0 +1,50 @@
+experiment: NETWORK_FREEZE
+base_contract: configs/rnee_build/base.yaml
+preflight_summary: results/runtime_freeze_latest_summary.json
+snapshot_manifest: results/network_freeze_latest_snapshot_manifest.json
+research_bbox: results/network_freeze_latest_research_bbox.geojson
+gps_trip_quality: results/network_freeze_latest_gps_trip_quality.parquet
+output_root: results/rnee_build
+
+crop:
+  strategy: complete_ways_intersecting_bbox_plus_restriction_relations
+  include_relation_types:
+    - restriction
+    - restriction:conditional
+    - connectivity
+  preserve_complete_way_nodes: true
+  overwrite: false
+
+valhalla:
+  concurrency: 1
+  include_driving: true
+  include_bicycle: false
+  include_pedestrian: false
+  use_admin_db: false
+  tile_extract: ""
+  admin: ""
+  timezone: ""
+  traffic_extract: ""
+  elevation: ""
+  locate_sample_count_per_snapshot: 25
+
+qa:
+  minimum_cropped_highway_ways: 10000
+  minimum_graph_tile_count: 10
+  minimum_graph_bytes: 10000000
+  required_tag_coverage_fields:
+    - highway
+    - maxspeed
+    - source:maxspeed
+    - lanes
+    - oneway
+    - access
+    - surface
+    - smoothness
+    - bridge
+    - tunnel
+    - junction
+    - traffic_calming
+    - lit
+  minimum_locate_success_rate: 1.0
+  minimum_locate_edge_reachability: 50

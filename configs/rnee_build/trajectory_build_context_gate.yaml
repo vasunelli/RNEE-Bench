@@ -1,0 +1,13 @@
+experiment: TRAJECTORY_BUILD-DRYRUN
+chunk_pointer: results/trajectory_build_context_chunk_dry_run_latest_pointer.json
+profile_pointer: results/trajectory_build_context_chunk_dry_run_latest_profile_pointer.json
+equivalence_pointer: results/trajectory_build_context_chunk_dry_run_latest_equivalence_pointer.json
+memory_ceiling_gb: 10.0
+maximum_resume_noop_seconds: 10.0
+output_root: results/rnee_build
+full_pipeline_partition_status:
+  map_matching_partitioned_resumable: false
+  edge_semantics_partitioned_resumable: false
+  context_semantics_partitioned_resumable: true
+  row_assembly_partitioned_resumable: false
+minimum_free_disk_gb: 150.0

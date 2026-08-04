@@ -1,0 +1,18 @@
+experiment: TRAJECTORY_BUILD-PRODUCTION-WIRING-DRYRUN
+stage: partitioned_row_assembly_production_wiring_dry_run
+status_suffix: TRAJECTORY_BUILD_ROW_PRODUCTION_WIRING_DRY_RUN
+base_config: configs/rnee_build/row_assembly.yaml
+map_partition_pointer: results/trajectory_build_map_match_production_latest_pointer.json
+edge_partition_pointer: results/trajectory_build_edge_production_latest_pointer.json
+context_chunk_pointer: results/trajectory_build_context_production_latest_pointer.json
+selected_source_files:
+  - VED_171227_week.csv
+  - VED_181107_week.csv
+  - VED_181010_week.csv
+output_root: results/rnee_build
+run_name_prefix: trajectory_build_row_production_wiring_dry_run
+latest_prefix: trajectory_build_row_production_wiring_dry_run
+report_filename: TRAJECTORY_BUILD_ROW_PRODUCTION_WIRING_DRY_RUN.md
+report_title: TRAJECTORY_BUILD row-production wiring dry run
+memory_ceiling_gb: 10.0
+sample_interval_seconds: 0.2

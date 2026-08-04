@@ -1,0 +1,9 @@
+base_config: configs/rnee_build/context_semantics.yaml
+experiment: END_TO_END
+stage: two_file_context_semantics
+status_suffix: CONTEXT_SEMANTICS_TWO_FILE
+run_name_prefix: end_to_end_context_semantics_two_file
+latest_prefix: end_to_end_context
+edge_semantics_pointer: results/end_to_end_edge_latest_pointer.json
+map_match_pointer: results/end_to_end_latest_raw_pointer.json
+trajectory_map_count: 100

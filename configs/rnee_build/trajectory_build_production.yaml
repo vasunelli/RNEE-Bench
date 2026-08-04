@@ -1,0 +1,34 @@
+experiment: TRAJECTORY_BUILD
+base_config: configs/rnee_build/end_to_end_valhalla.yaml
+profiles: configs/rnee_build/map_match_profiles_balanced_final.yaml
+remediation: configs/rnee_build/map_matching_remediation.yaml
+source_inventory: results/source_inventory_ved_inventory_20260716_220831/source_file_inventory.parquet
+source_inventory_sha256: 27f22161551adfc074787f6c0567d30c9c6f7fcb9bd7ce69bb7ac3276bffff52
+authorization_pointer: results/trajectory_build_partition_readiness_gate_latest_pointer.json
+runtime_freeze_summary: results/runtime_freeze_latest_summary.json
+network_pointer: results/network_freeze_latest_network_pointer.json
+output_root: results/rnee_build
+preflight_run_name_prefix: trajectory_build_production_preflight
+preflight_latest_prefix: trajectory_build_production_preflight
+minimum_free_disk_gb: 150.0
+expected_source_file_count: 54
+expected_source_row_count: 22436808
+expected_test_count: 61
+
+# Production map-matching runner settings.
+preflight_pointer: results/trajectory_build_production_preflight_latest_pointer.json
+run_name_prefix: trajectory_build_map_match_production
+latest_prefix: trajectory_build_map_match_production
+summary_stage: partitioned_map_match_production
+status_suffix: TRAJECTORY_BUILD_PARTITIONED_MAP_MATCH_PRODUCTION
+report_filename: TRAJECTORY_BUILD_PARTITIONED_MAP_MATCH_PRODUCTION.md
+memory_ceiling_gb: 10.0
+sample_interval_seconds: 0.2
+maximum_request_failures_per_partition: 2
+maximum_request_failure_rate_per_partition: 0.005
+maximum_request_failure_rate_global: 0.001
+map_snap_failure_fallback:
+  enabled: true
+  error_codes: [444]
+  minimum_points_per_child: 3
+  maximum_depth: 4

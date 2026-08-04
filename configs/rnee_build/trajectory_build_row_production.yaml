@@ -1,0 +1,14 @@
+experiment: TRAJECTORY_BUILD
+stage: partitioned_row_assembly_production
+status_suffix: TRAJECTORY_BUILD_PARTITIONED_ROW_PRODUCTION
+base_config: configs/rnee_build/row_assembly.yaml
+map_partition_pointer: results/trajectory_build_map_match_production_latest_pointer.json
+edge_partition_pointer: results/trajectory_build_edge_production_latest_pointer.json
+context_chunk_pointer: results/trajectory_build_context_production_latest_pointer.json
+output_root: results/rnee_build
+run_name_prefix: trajectory_build_row_production
+latest_prefix: trajectory_build_row_production
+report_filename: TRAJECTORY_BUILD_PARTITIONED_ROW_PRODUCTION.md
+report_title: TRAJECTORY_BUILD partitioned row-assembly production
+memory_ceiling_gb: 10.0
+sample_interval_seconds: 0.2

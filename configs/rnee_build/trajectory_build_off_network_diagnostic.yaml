@@ -1,0 +1,10 @@
+experiment: TRAJECTORY_BUILD
+map_pointer: results/trajectory_build_map_match_production_latest_pointer.json
+quality_check_form: results/trajectory_build_manual_spatial_qa_20260717_183448/manual_quality_check_form.csv
+output_root: results/rnee_build
+run_name_prefix: trajectory_build_off_network_diagnostic
+latest_prefix: trajectory_build_off_network_diagnostic
+candidate_rule:
+  require_route_discontinuity: true
+  trip_distance_p95_m_min_exclusive: 50.0
+  raw_coordinate_update_bbox_diagonal_m_max: 2200.0

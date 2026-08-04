@@ -1,0 +1,68 @@
+stage: NETWORK_FREEZE
+policy:
+  historical_only: true
+  current_osm_fallback: forbidden
+  assignment: latest_snapshot_on_or_before_trip_date
+  temporal_granularity: annual
+  maximum_allowed_snapshot_date: "2018-01-01"
+  maximum_trip_to_snapshot_lag_days: 365
+
+inputs:
+  ved_dynamic_dir: source/ved/extracted
+  ved_pattern: VED_*_week.csv
+  source_inventory: results/source_inventory_ved_inventory_20260716_220831/source_file_inventory.parquet
+
+columns:
+  daynum: DayNum
+  vehicle: VehId
+  trip: Trip
+  timestamp_ms: Timestamp(ms)
+  latitude: Latitude[deg]
+  longitude: Longitude[deg]
+
+gps_quality:
+  daynum_origin: "2017-10-31"
+  chunk_rows: 1000000
+  repeated_coordinate_epsilon_deg: 1.0e-10
+  implied_speed_warning_kmh: 200.0
+  minimum_positive_dt_seconds: 0.0
+  maximum_continuous_dt_seconds: 10.0
+  research_bbox_buffer_km: 20.0
+  expected_region:
+    min_lat: 41.5
+    max_lat: 43.5
+    min_lon: -85.0
+    max_lon: -82.0
+
+osm:
+  raw_dir: source/osm/historical
+  provider: Geofabrik
+  provider_page: https://download.geofabrik.de/north-america/us/michigan.html
+  attribution: "OpenStreetMap contributors"
+  license: ODbL-1.0
+  license_url: https://opendatacommons.org/licenses/odbl/1-0/
+  require_pbf_parse: true
+  snapshots:
+    - snapshot_id: geofabrik_michigan_2017-01-01
+      snapshot_date: "2017-01-01"
+      filename: michigan-170101.osm.pbf
+      url: https://download.geofabrik.de/north-america/us/michigan-170101.osm.pbf
+      expected_bytes: 99353663
+    - snapshot_id: geofabrik_michigan_2018-01-01
+      snapshot_date: "2018-01-01"
+      filename: michigan-180101.osm.pbf
+      url: https://download.geofabrik.de/north-america/us/michigan-180101.osm.pbf
+      expected_bytes: 112446779
+
+quality_gates:
+  raw_row_count: 22436808
+  raw_file_count: 54
+  valid_coordinate_rate_min: 0.999
+  files_with_schema_errors_max: 0
+  trips_without_valid_coordinates_max: 0
+  downloaded_snapshot_count: 2
+  require_historical_only: true
+  require_exact_download_size: true
+  require_sha256: true
+  require_highway_ways_min: 100000
+  require_research_bbox_inside_pbf_header: true

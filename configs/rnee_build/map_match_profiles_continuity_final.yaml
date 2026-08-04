@@ -1,0 +1,18 @@
+profiles:
+  continuity_final:
+    gps_accuracy_m: 20
+    search_radius_m: 100
+    breakage_distance_m: 1000
+
+selection_policy:
+  evidence_scope: final_bounded_map_matching_quality_sensitivity
+  rationale: "The 75 m continuity candidate reduced discontinuity to 6%; this final predeclared sensitivity changes only search radius to 100 m while retaining segmented raw-GPS breaks and a 1000 m Valhalla breakage distance"
+  prohibited_selection_inputs:
+    - energy_target
+    - model_metric
+    - eVED_match_fields
+  ranking:
+    - gate_band
+    - matched_coverage_desc
+    - distance_p95_asc
+    - discontinuity_rate_asc

@@ -1,0 +1,5 @@
+numpy==2.3.4
+pandas==3.0.3
+pyarrow==18.1.0
+PyYAML==6.0.3
+osmium==4.2.0

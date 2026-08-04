@@ -2,13 +2,13 @@
   "schema_version": 1,
   "paper_title": "When Does Road Context Help Vehicle Fuel-Use Estimation? Transfer Boundaries Under Sparse Onboard Sensing",
   "sources": {
-    "study_population": "Manuscript Sections 2.1-2.2 and Appendix Table A.1",
-    "primary_effects": "Manuscript Table 3 and Figure 3",
-    "correspondence_controls": "Manuscript Appendix Table A.4 and Figure 4",
-    "model_sensitivity": "Manuscript Appendix Table A.5 and Figure 5",
-    "rpm_diagnostic": "Manuscript Appendix Table A.7 and Figure 6a",
-    "road_attribute_overlap": "Manuscript Appendix Table A.8 and Figure 6b",
-    "map_matching": "Manuscript Section 2.3 and Appendix Table A.1"
+    "study_population": "Paper Sections 2.1-2.2 and Appendix Table A.1",
+    "primary_effects": "Paper Table 3 and Figure 3",
+    "correspondence_controls": "Paper Appendix Table A.4 and Figure 4",
+    "model_sensitivity": "Paper Appendix Table A.5 and Figure 5",
+    "rpm_diagnostic": "Paper Appendix Table A.7 and Figure 6a",
+    "road_attribute_overlap": "Paper Appendix Table A.8 and Figure 6b",
+    "map_matching": "Paper Section 2.3 and Appendix Table A.1"
   },
   "study_population": {
     "segments": 112787,

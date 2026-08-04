@@ -1,0 +1,19 @@
+profiles:
+  balanced_final:
+    gps_accuracy_m: 20
+    search_radius_m: 90
+    breakage_distance_m: 1000
+
+selection_policy:
+  evidence_scope: bounded_balance_between_75m_and_100m_sensitivities
+  rationale: "The 75 m sensitivity retained 6% discontinuity, while 100 m removed discontinuities but crossed the 40 m P95 quality_check boundary; 90 m is the final frozen compromise and no further pilot parameter search is allowed"
+  prohibited_selection_inputs:
+    - energy_target
+    - model_metric
+    - eVED_match_fields
+  no_further_pilot_parameter_search: true
+  ranking:
+    - gate_band
+    - matched_coverage_desc
+    - distance_p95_asc
+    - discontinuity_rate_asc
