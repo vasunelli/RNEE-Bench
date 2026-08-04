@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "target": {
+    "name": "operational_fuel_volume",
+    "unit": "L_per_nominal_60s_segment",
+    "definition": "direct Fuel Rate when valid, otherwise MAF with available fuel-trim correction",
+    "direct_density_g_per_L": 745.0,
+    "stoichiometric_air_fuel_ratio": 14.08,
+    "predictor_exclusions": [
+      "Fuel Rate",
+      "MAF",
+      "short-term fuel trim",
+      "long-term fuel trim"
+    ]
+  },
+  "primary_model": {
+    "name": "HistGradientBoostingRegressor",
+    "loss": "absolute_error",
+    "max_iter": 200,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 31,
+    "min_samples_leaf": 30,
+    "l2_regularization": 1.0,
+    "early_stopping": false,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "prediction_aggregation": "mean_across_seeds"
+  },
+  "controls": {
+    "replicates_per_type": 20,
+    "matched_noise_base_seed": 190010,
+    "reassigned_road_base_seed": 190020,
+    "reassignment": "Sattolo cyclic derangement within each data role"
+  },
+  "inference": {
+    "cluster": "vehicle",
+    "bootstrap_repetitions": 2000,
+    "two_sided_alpha": 0.05,
+    "interval_method": "bootstrap-standardized max-t",
+    "comparison_family_sizes": {
+      "primary_HGB": 24,
+      "control_contrasts": 16,
+      "model_sensitivity": 24,
+      "RPM_diagnostic": 7,
+      "supporting_engine_state_and_Ridge": 15
+    },
+    "primary_HGB_base_seed": 189030,
+    "model_and_control_base_seed": 190030
+  },
+  "software_for_full_analysis": {
+    "python": "3.11.4",
+    "numpy": "2.3.4",
+    "pandas": "3.0.3",
+    "scikit_learn": "1.9.0",
+    "catboost": "1.2.10"
+  }
+}
