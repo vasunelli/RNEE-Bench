@@ -2,7 +2,7 @@
 
 RNEE-Bench is a VED-native, quality-controlled, leakage-controlled road-network-semantic benchmark for vehicle energy estimation. This repository now contains both the compact reported-results package and the complete frozen public data/model release used to verify and reproduce the RNEE construction and theory-validation workflow.
 
-The accompanying study is **“When Does Road Context Improve Fuel-Use Estimation? Evidence from Michigan across Transfer Settings”** Its conclusions are predictive, not causal. The operational fuel-volume target is predominantly MAF-derived and was not independently validated against physical fuel-flow measurements.
+The accompanying study is **“When Do Historical Road Attributes Improve Fuel-Use Estimation in Ann Arbor, Michigan?”** Its conclusions are predictive, not causal. The operational fuel-volume target is predominantly MAF-derived and was not independently validated against physical fuel-flow measurements.
 
 ## Download
 
