@@ -1,0 +1,74 @@
+{
+  "settings": [
+    {
+      "id": "cold_trip",
+      "label": "Unseen trips",
+      "evaluation_segments": 17376,
+      "evaluation_trips": 2196,
+      "evaluation_vehicles": 179,
+      "rule": "Whole trips hash-ranked within represented vehicles; minimum four construction-cohort trips per vehicle before target-specific selection.",
+      "development_fractions": {
+        "training": 0.65,
+        "validation": 0.1,
+        "RPM-check": 0.1,
+        "evaluation": 0.15
+      }
+    },
+    {
+      "id": "unseen_vehicle",
+      "label": "Unseen vehicles",
+      "evaluation_segments": 112787,
+      "evaluation_trips": 14647,
+      "evaluation_vehicles": 197,
+      "rule": "Five deterministic unshuffled vehicle-grouped outer folds; evaluation vehicles excluded from each final fold development roles; one out-of-fold prediction per eligible segment.",
+      "development_weights": {
+        "training": 65,
+        "validation": 10,
+        "RPM-check": 10
+      }
+    },
+    {
+      "id": "cold_month",
+      "label": "October 2018",
+      "evaluation_segments": 6260,
+      "evaluation_trips": 837,
+      "evaluation_vehicles": 94,
+      "rule": "Train November 2017–July 2018; validate August; RPM-check September; evaluate October; exclude November 2018."
+    },
+    {
+      "id": "cold_spatial",
+      "label": "Held-out area",
+      "evaluation_segments": 10550,
+      "evaluation_trips": 3445,
+      "evaluation_vehicles": 167,
+      "rule": "Score eligible segments in two adjacent 1-km cells; exclude other segments from those trips and buffer-intersecting trips from development.",
+      "remaining_trip_fractions": {
+        "training": 0.8,
+        "validation": 0.1,
+        "RPM-check": 0.1
+      }
+    },
+    {
+      "id": "cold_functional_road_class",
+      "label": "Motorway-dominant evaluation",
+      "evaluation_segments": 8957,
+      "evaluation_trips": 1369,
+      "evaluation_vehicles": 139,
+      "selection_unit": "segment",
+      "rule": "Score eligible segments whose largest speed-integrated road-class share is motorway; a majority is not required. Exclude other segments from those trips from development and scoring.",
+      "remaining_trip_fractions": {
+        "training": 0.8,
+        "validation": 0.1,
+        "RPM-check": 0.1
+      }
+    }
+  ],
+  "stored_role_to_paper_label": {
+    "train": "training",
+    "validation": "validation",
+    "calibration": "RPM-check",
+    "test": "evaluation"
+  },
+  "role_mapping_changes_membership": false,
+  "primary_estimator_selection_note": "The historical common-estimator selection pool overlapped some later evaluation units. The separate unseen-vehicle sensitivity excludes each outer evaluation vehicle before selection."
+}

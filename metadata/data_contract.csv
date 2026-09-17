@@ -1,7 +1,0 @@
-field_or_group,required_type,unit,requirement
-segment key,string/integer tuple,none,"Unique vehicle, trip, and segment-start key; identifiers are grouping fields, never predictors."
-operational target,float,L per nominal 60-s segment,"Direct Fuel Rate when valid, otherwise MAF with available fuel-trim correction."
-lower-information telemetry,float columns,see variable definitions,"Duration, distance, speed mean/std, ambient-temperature mean/std, idle ratio, low-speed ratio."
-RPM augmentation,float columns,rpm,Segment time-weighted RPM mean and standard deviation.
-road attributes,float columns,feature-specific,Candidate names in variable_dictionary.csv; retention is learned from each training subset.
-partition role,categorical,none,"Exactly one of training, validation, calibration, evaluation; trips cannot cross roles."

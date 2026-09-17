@@ -1,8 +1,0 @@
-experiment: TRAJECTORY_BUILD
-map_partition_pointer: results/trajectory_build_map_match_production_latest_pointer.json
-network_pointer: results/network_freeze_latest_network_pointer.json
-edge_config: configs/rnee_build/edge_semantics.yaml
-selected_profile: balanced_final
-output_root: results/rnee_build
-run_name_prefix: trajectory_build_osm_way_tag_cache
-latest_prefix: trajectory_build_osm_way_tag_cache

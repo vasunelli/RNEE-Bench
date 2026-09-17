@@ -1,8 +1,0 @@
-base_config: configs/rnee_build/edge_semantics.yaml
-experiment: END_TO_END
-stage: two_file_edge_semantics
-status_suffix: EDGE_SEMANTICS_TWO_FILE
-run_name_prefix: end_to_end_edge_semantics_two_file
-latest_prefix: end_to_end_edge
-map_match_pointer: results/end_to_end_latest_raw_pointer.json
-require_edge_semantics_authorization: false

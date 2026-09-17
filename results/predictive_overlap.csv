@@ -1,0 +1,46 @@
+statistic,setting,task,family,interval_method,replicate_count,cluster_unit,interval_type,estimate,lower,upper,unit,max_T_critical,bootstrap_sd,seed
+G_B,cold_trip,fuel,secondary_cold_trip,cluster-bootstrap percentile,2000,VehId,pointwise,1.2425287181815676,1.093503647337465,1.4074256653110264,mL/segment,,,4075892481
+G_BK,cold_trip,fuel,F_cold_trip,max-T,2000,VehId,simultaneous,0.48850491594277656,0.3357678513454803,0.6412419805400729,mL/segment,2.44450524323262,0.062481790546424165,4075892481
+G_BZ,cold_trip,fuel,secondary_cold_trip,cluster-bootstrap percentile,2000,VehId,pointwise,0.5323440487811482,0.37491884137285825,0.7226740745165101,mL/segment,,,4075892481
+G_BKZ,cold_trip,fuel,F_cold_trip,max-T,2000,VehId,simultaneous,0.3272055135707781,0.18136879532495706,0.4730422318165991,mL/segment,2.44450524323262,0.05965899179376116,4075892481
+A_K,cold_trip,fuel,F_cold_trip,max-T,2000,VehId,simultaneous,0.7540238022387911,0.5887944981762511,0.9192531063013311,mL/segment,2.44450524323262,0.06759212504041935,4075892481
+A_Z_given_K,cold_trip,fuel,F_cold_trip,max-T,2000,VehId,simultaneous,0.16129940237199847,0.04659356539778371,0.27600523934621324,mL/segment,2.44450524323262,0.046923948022515774,4075892481
+A_K_given_Z,cold_trip,fuel,secondary_cold_trip,cluster-bootstrap percentile,2000,VehId,pointwise,0.20513853521037007,0.09875235770781336,0.32615972878334015,mL/segment,,,4075892481
+G_B,unseen_vehicle,fuel,secondary_unseen_vehicle,cluster-bootstrap percentile,2000,VehId,pointwise,0.8736537061831946,0.7632811234722372,0.9955138753985103,mL/segment,,,1046996550
+G_BK,unseen_vehicle,fuel,F_unseen_vehicle,max-T,2000,VehId,simultaneous,0.11937239711120107,-0.0027492473384141958,0.24149404156081633,mL/segment,2.511283411484752,0.04862917657605718,1046996550
+G_BZ,unseen_vehicle,fuel,secondary_unseen_vehicle,cluster-bootstrap percentile,2000,VehId,pointwise,0.13177909933012621,-0.016641082646754766,0.28449516109298495,mL/segment,,,1046996550
+G_BKZ,unseen_vehicle,fuel,F_unseen_vehicle,max-T,2000,VehId,simultaneous,0.02567852951539429,-0.09673435225053259,0.14809141128132117,mL/segment,2.511283411484752,0.04874514808089797,1046996550
+A_K,unseen_vehicle,fuel,F_unseen_vehicle,max-T,2000,VehId,simultaneous,0.7542813090719935,0.6448256911428619,0.8637369270011251,mL/segment,2.511283411484752,0.04358552978471591,1046996550
+A_Z_given_K,unseen_vehicle,fuel,F_unseen_vehicle,max-T,2000,VehId,simultaneous,0.09369386759580678,0.01425611479146055,0.173131620400153,mL/segment,2.511283411484752,0.03163233287053812,1046996550
+A_K_given_Z,unseen_vehicle,fuel,secondary_unseen_vehicle,cluster-bootstrap percentile,2000,VehId,pointwise,0.10610056981473193,-0.0017716373508478423,0.21502196149849123,mL/segment,,,1046996550
+G_B,cold_month,fuel,secondary_cold_month,cluster-bootstrap percentile,2000,VehId,pointwise,1.451690514638802,1.1645406580580866,1.7234391004140226,mL/segment,,,3089379780
+G_BK,cold_month,fuel,F_cold_month,max-T,2000,VehId,simultaneous,0.545174461007532,0.2829012329608453,0.8074476890542186,mL/segment,2.424230903817816,0.10818822069863229,3089379780
+G_BZ,cold_month,fuel,secondary_cold_month,cluster-bootstrap percentile,2000,VehId,pointwise,0.6188398083167872,0.35378525661357363,0.9044582640387759,mL/segment,,,3089379780
+G_BKZ,cold_month,fuel,F_cold_month,max-T,2000,VehId,simultaneous,0.34033017441110225,0.1082208697802397,0.5724394790419648,mL/segment,2.424230903817816,0.09574554315982182,3089379780
+A_K,cold_month,fuel,F_cold_month,max-T,2000,VehId,simultaneous,0.90651605363127,0.5958419099402192,1.2171901973223207,mL/segment,2.424230903817816,0.12815369328135515,3089379780
+A_Z_given_K,cold_month,fuel,F_cold_month,max-T,2000,VehId,simultaneous,0.20484428659642973,0.010817054708079699,0.39887151848477975,mL/segment,2.424230903817816,0.08003661350195024,3089379780
+A_K_given_Z,cold_month,fuel,secondary_cold_month,cluster-bootstrap percentile,2000,VehId,pointwise,0.27850963390568495,0.07476719057958454,0.4814620960663779,mL/segment,,,3089379780
+G_B,cold_spatial,fuel,boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,-0.08586325398260364,-0.3176402366210923,0.1618997698002213,mL/segment,,,3170558495
+G_BK,cold_spatial,fuel,boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,-0.2731538097556854,-0.5476628024836988,0.001041641253089186,mL/segment,,,3170558495
+G_BZ,cold_spatial,fuel,boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,-0.5968637924243492,-1.1319805865893018,-0.07200105003935606,mL/segment,,,3170558495
+G_BKZ,cold_spatial,fuel,boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,-0.32063124046095837,-0.556878648655489,-0.06970278339250204,mL/segment,,,3170558495
+A_K,cold_spatial,fuel,boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,0.18729055577308173,0.02367080571124931,0.33548523594771756,mL/segment,,,3170558495
+A_Z_given_K,cold_spatial,fuel,boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,0.047477430705272994,-0.06042858572681093,0.16484052092064988,mL/segment,,,3170558495
+A_K_given_Z,cold_spatial,fuel,boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,-0.2762325519633908,-0.6293392442960464,0.0741880077368158,mL/segment,,,3170558495
+G_B,cold_functional_road_class,fuel,boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-2.5225966972035394,-3.027925811926257,-2.037612872026662,mL/segment,,,3650743292
+G_BK,cold_functional_road_class,fuel,boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-3.2643321465676323,-3.7022161358605543,-2.7620303400087782,mL/segment,,,3650743292
+G_BZ,cold_functional_road_class,fuel,boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-3.171289695826289,-3.763395428729751,-2.619225890500291,mL/segment,,,3650743292
+G_BKZ,cold_functional_road_class,fuel,boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-3.104137077484168,-3.797805265137833,-2.336218643386438,mL/segment,,,3650743292
+A_K,cold_functional_road_class,fuel,boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,0.7417354493640929,0.23694964715868244,1.1800117006733433,mL/segment,,,3650743292
+A_Z_given_K,cold_functional_road_class,fuel,boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-0.16019506908346415,-0.7713184205021661,0.48736930050936933,mL/segment,,,3650743292
+A_K_given_Z,cold_functional_road_class,fuel,boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-0.06715261834212072,-0.605408782061897,0.3292335270695135,mL/segment,,,3650743292
+G_Kplus,cold_trip,kplus,kplus_three_core,cluster-bootstrap percentile,2000,VehId,Bonferroni,5.553758965759094,4.95128581755216,6.2668298352203005,J/kg,,,2401213563
+G_Kplus,unseen_vehicle,kplus,kplus_three_core,cluster-bootstrap percentile,2000,VehId,Bonferroni,4.7896658022785985,4.415145476959587,5.1715271737699595,J/kg,,,3636502587
+G_Kplus,cold_month,kplus,kplus_three_core,cluster-bootstrap percentile,2000,VehId,Bonferroni,5.944757097167432,4.858787833854416,7.132929809935872,J/kg,,,1266475083
+G_Kplus,cold_spatial,kplus,kplus_boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,-0.35101637635200333,-0.652661455043534,-0.027881802902186358,J/kg,,,3310893908
+G_Kplus,cold_functional_road_class,kplus,kplus_boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-5.376469679347949,-7.642130928907395,-3.1566913230795013,J/kg,,,3673875553
+G_RPM_given_K,cold_trip,rpm,rpm_three_core,cluster-bootstrap percentile,2000,VehId,Bonferroni,3.3679609182120913,1.6830495294389958,5.590912613731847,rpm,,,2386361203
+G_RPM_given_K,unseen_vehicle,rpm,rpm_three_core,cluster-bootstrap percentile,2000,VehId,Bonferroni,-0.4664834748905662,-2.0481183941264067,1.0001521824163917,rpm,,,3950224765
+G_RPM_given_K,cold_month,rpm,rpm_three_core,cluster-bootstrap percentile,2000,VehId,Bonferroni,3.795585111957891,-0.3959514380082469,10.70962939549952,rpm,,,610232594
+G_RPM_given_K,cold_spatial,rpm,rpm_boundary_cold_spatial,cluster-bootstrap percentile,2000,VehId,pointwise,-3.432150875346082,-6.6187339131727105,-0.25478137880875185,rpm,,,1382571312
+G_RPM_given_K,cold_functional_road_class,rpm,rpm_boundary_cold_functional_road_class,cluster-bootstrap percentile,2000,VehId,pointwise,-27.458895486455845,-33.25735019936344,-21.36290659184894,rpm,,,1702889348

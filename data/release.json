@@ -1,0 +1,11 @@
+{
+  "tag": "v0.2.0-energy",
+  "url": "https://github.com/vasunelli/RNEE-Bench/releases/download/v0.2.0-energy/RNEE-Bench-energy-v0.2.0.7z",
+  "archive_name": "RNEE-Bench-energy-v0.2.0.7z",
+  "bytes": 279066330,
+  "sha256": "c1afabddbab0c1513c2fc4cd2f649b1ebc73817a4aae78e8001da32fe916fc4f",
+  "file_count": 287,
+  "archive_root": "energy",
+  "local_directory": "data/energy",
+  "checksums_sha256": "665dbaf0b2e8c6f5cd035bc5ff3c581f88dfb741526def63be71c2b7f677d1cf"
+}

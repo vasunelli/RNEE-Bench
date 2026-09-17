@@ -2,10 +2,7 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .venv*/
-generated/
-RUN_CONFIG/
-*.tmp
-/data/
-/models/
-/predictions/
-/results/rnee_build/
+/data/energy/
+/data/*.7z
+/data/*.download
+/generated/

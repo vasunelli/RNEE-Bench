@@ -1,6 +1,0 @@
-record_type,population,segments,trips,vehicles,maf_only_segments,direct_fuel_rate_only_segments,mixed_source_segments,maf_effective_duration_share_pct
-primary_analysis_cohort,All primary ICE segments,112787,14647,197,112766,21,0,99.9814
-evaluation_population,Unseen trip,17376,2196,179,,,,
-evaluation_population,October 2018,6260,837,94,,,,
-evaluation_population,Single held-out area,10550,3445,167,,,,
-evaluation_population,Motorway-largest-share holdout,8957,1369,139,,,,

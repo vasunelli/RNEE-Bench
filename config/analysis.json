@@ -1,0 +1,270 @@
+{
+  "configuration_scope": "Description of the reported analyses; saved-result calculations use the released inputs and resampling records.",
+  "target": {
+    "name": "OBD-derived fuel volume",
+    "internal_unit": "L",
+    "reported_prediction_error_unit": "mL per segment",
+    "fuel_rate_priority": true,
+    "MAF_reference_air_fuel_ratio": 14.08,
+    "fuel_density_g_per_L": 745.0,
+    "independent_fuel_flow_validation": false
+  },
+  "segment": {
+    "nominal_seconds": 60,
+    "minimum_records": 30,
+    "minimum_observed_seconds": 45,
+    "minimum_valid_held_seconds": 40,
+    "minimum_target_and_road_coverage": 0.95,
+    "maximum_valid_interval_seconds": 10
+  },
+  "primary_estimator": {
+    "name": "HistGradientBoostingRegressor",
+    "parameters": {
+      "loss": "absolute_error",
+      "max_iter": 200,
+      "learning_rate": 0.05,
+      "max_leaf_nodes": 31,
+      "min_samples_leaf": 30,
+      "l2_regularization": 1.0,
+      "early_stopping": false
+    },
+    "nonvehicle_seeds": [
+      0,
+      1,
+      2
+    ],
+    "nonvehicle_aggregation": "mean prediction",
+    "unseen_vehicle_seeds": [
+      0
+    ]
+  },
+  "estimator_selection_sensitivity": {
+    "separate_from_primary": true,
+    "exclude_outer_evaluation_vehicles_before": [
+      "sampling",
+      "feature filtering",
+      "target IQR calculation",
+      "candidate fitting",
+      "ranking",
+      "seed checks"
+    ],
+    "selected_by_fold": [
+      {
+        "outer_fold": 0,
+        "selected_estimator": "hist_gradient_boosting_l1",
+        "params": {
+          "kind": "hist_gradient_boosting",
+          "backend": "cpu",
+          "params": {
+            "loss": "absolute_error",
+            "learning_rate": 0.05,
+            "max_iter": 200,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 30,
+            "l2_regularization": 1.0,
+            "early_stopping": false
+          }
+        }
+      },
+      {
+        "outer_fold": 1,
+        "selected_estimator": "hist_gradient_boosting_l1",
+        "params": {
+          "kind": "hist_gradient_boosting",
+          "backend": "cpu",
+          "params": {
+            "loss": "absolute_error",
+            "learning_rate": 0.05,
+            "max_iter": 200,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 30,
+            "l2_regularization": 1.0,
+            "early_stopping": false
+          }
+        }
+      },
+      {
+        "outer_fold": 2,
+        "selected_estimator": "hist_gradient_boosting_l1",
+        "params": {
+          "kind": "hist_gradient_boosting",
+          "backend": "cpu",
+          "params": {
+            "loss": "absolute_error",
+            "learning_rate": 0.05,
+            "max_iter": 200,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 30,
+            "l2_regularization": 1.0,
+            "early_stopping": false
+          }
+        }
+      },
+      {
+        "outer_fold": 3,
+        "selected_estimator": "hist_gradient_boosting_l1",
+        "params": {
+          "kind": "hist_gradient_boosting",
+          "backend": "cpu",
+          "params": {
+            "loss": "absolute_error",
+            "learning_rate": 0.05,
+            "max_iter": 200,
+            "max_leaf_nodes": 31,
+            "min_samples_leaf": 30,
+            "l2_regularization": 1.0,
+            "early_stopping": false
+          }
+        }
+      },
+      {
+        "outer_fold": 4,
+        "selected_estimator": "lightgbm_l1",
+        "params": {
+          "kind": "lightgbm",
+          "backend": "cpu",
+          "params": {
+            "objective": "regression_l1",
+            "n_estimators": 200,
+            "learning_rate": 0.05,
+            "num_leaves": 31,
+            "min_child_samples": 30,
+            "subsample": 0.9,
+            "colsample_bytree": 0.9,
+            "reg_lambda": 1.0,
+            "n_jobs": 8,
+            "device_type": "cpu",
+            "verbosity": -1
+          }
+        }
+      }
+    ],
+    "seed_policy_by_fold": [
+      {
+        "outer_fold": 0,
+        "estimator": "hist_gradient_boosting_l1",
+        "max_prediction_difference_L": 0.0,
+        "seeds": [
+          0
+        ],
+        "validation_vehicles": 7,
+        "evaluation_overlap": 0
+      },
+      {
+        "outer_fold": 1,
+        "estimator": "hist_gradient_boosting_l1",
+        "max_prediction_difference_L": 0.0,
+        "seeds": [
+          0
+        ],
+        "validation_vehicles": 6,
+        "evaluation_overlap": 0
+      },
+      {
+        "outer_fold": 2,
+        "estimator": "hist_gradient_boosting_l1",
+        "max_prediction_difference_L": 0.0,
+        "seeds": [
+          0
+        ],
+        "validation_vehicles": 7,
+        "evaluation_overlap": 0
+      },
+      {
+        "outer_fold": 3,
+        "estimator": "hist_gradient_boosting_l1",
+        "max_prediction_difference_L": 0.0,
+        "seeds": [
+          0
+        ],
+        "validation_vehicles": 6,
+        "evaluation_overlap": 0
+      },
+      {
+        "outer_fold": 4,
+        "estimator": "lightgbm_l1",
+        "max_prediction_difference_L": 0.012329196713107948,
+        "seeds": [
+          0,
+          1,
+          2
+        ],
+        "validation_vehicles": 6,
+        "evaluation_overlap": 0
+      }
+    ]
+  },
+  "uncertainty": {
+    "cluster": "evaluation vehicle",
+    "main_replicates": 2000,
+    "speed_and_diagnostic_replicates": 1000,
+    "fits_and_partitions_fixed": true,
+    "primary_nonvehicle": "simultaneous intervals from the applicable saved families",
+    "primary_unseen_vehicle": "pointwise 95% percentile intervals",
+    "selection_sensitivity": "separate pointwise 95% percentile intervals",
+    "overlap_core_fuel_family": [
+      "G_BK",
+      "G_BKZ",
+      "A_K",
+      "A_Z_given_K"
+    ],
+    "overlap_core_fuel_method": "separate max-T family within each core setting",
+    "kinetic_energy_and_conditional_RPM": "separate Bonferroni adjustments across core settings",
+    "accounting_gain_family": [
+      "1",
+      "2",
+      "4",
+      "8",
+      "full_prefix",
+      "complete"
+    ],
+    "accounting_gain_method": "six-endpoint max-T family within setting and loss",
+    "accounting_attenuation": "pointwise 95% percentile intervals"
+  },
+  "accounting": {
+    "core_settings": [
+      "cold_trip",
+      "unseen_vehicle",
+      "cold_month"
+    ],
+    "losses": [
+      "absolute_error",
+      "squared_error"
+    ],
+    "common_observations_at": [
+      "1",
+      "2",
+      "4",
+      "8",
+      "full_prefix"
+    ],
+    "tail_restoration_at": "complete",
+    "normalization": "observed fuel volume",
+    "gain_unit": "percentage points",
+    "identity": "T = S + CR - C0"
+  },
+  "model_sensitivity": {
+    "settings": "four non-vehicle settings",
+    "Ridge": {
+      "alpha": 1,
+      "solver": "lsqr",
+      "tol": 0.0001,
+      "preprocessing": "training-set median imputation and standardisation"
+    },
+    "CatBoost": {
+      "loss_function": "MAE",
+      "iterations": 200,
+      "depth": 6,
+      "learning_rate": 0.05,
+      "l2_leaf_reg": 3,
+      "random_strength": 1
+    }
+  },
+  "pairing_controls": {
+    "replicates_per_control": 20,
+    "matched_noise": "Independent Gaussian values matched to training means and variances, preserving recipient missingness.",
+    "reassigned_road": "Within-partition Sattolo permutations of intact road vectors.",
+    "figure4_telemetry": "Base",
+    "figure4b_display": "Replicate mean and full replicate range"
+  }
+}
