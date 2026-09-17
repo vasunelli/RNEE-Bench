@@ -1,5 +1,7 @@
 # Frozen model and prediction card
 
+For the current manuscript's data, tables and figures, see the [paper resource guide](../energy/README.md). This page describes the earlier construction release.
+
 ## THEORY_VALIDATION model family
 
 `models/theory_validation/` contains 192 frozen `HistGradientBoostingRegressor` Joblib objects covering four OOD environments, ICE/HEV operational targets, low/high sensor regimes, road-free/real-road/noise-road/permuted-road systems, and three fixed seeds where specified by the THEORY_VALIDATION protocol.

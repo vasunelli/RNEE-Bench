@@ -1,5 +1,7 @@
 # Data access
 
+For the current manuscript's data, tables and figures, see the [paper resource guide](../energy/README.md). This page describes the earlier construction release.
+
 The complete derived RNEE release is distributed through the `v0.1.0-full` GitHub Release as three split 7-Zip volumes. Extracting the `.001` volume at the repository root creates `data/`, `predictions/`, `models/` and the two small contract-fixture directories. The instructions below apply only when rebuilding from the upstream raw sources.
 
 ## Vehicle data

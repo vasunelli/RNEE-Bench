@@ -1,0 +1,6 @@
+Evaluation setting,Generalisation tested,Partitioning rule,Eligible evaluation segments / trips / vehicles
+Unseen trips,New trips from represented vehicles,Whole trips hash-ranked within vehicle; 65/10/10/15% training/validation/RPM-check/evaluation,"17,376 / 2,196 / 179"
+Unseen vehicles,Vehicles excluded from each final fold’s development roles,Five vehicle-disjoint folds; each eligible segment scored once out of fold; counts pooled across folds,"112,787 / 14,647 / 197"
+October 2018,Later calendar period,Train Nov 2017–Jul 2018; validation Aug; RPM-check Sep; evaluation Oct,"6,260 / 837 / 94"
+Held-out area,Spatial transfer,Two adjacent 1-km cells and one-cell buffer; same evaluation trips and buffer trips excluded from development,"10,550 / 3,445 / 167"
+Motorway-dominant evaluation,Road-class transfer,Score segments whose largest distance share is motorway; same trips excluded from development,"8,957 / 1,369 / 139"

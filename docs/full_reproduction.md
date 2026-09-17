@@ -1,5 +1,7 @@
 # Full construction, training and rerun pipeline
 
+For the current manuscript's data, tables and figures, see the [paper resource guide](../energy/README.md). This page describes the earlier construction release.
+
 This guide documents the complete checked-in workflow used to create the released data and frozen model evidence. The commands preserve the published data, feature, and evaluation contracts.
 
 ## 1. Environment

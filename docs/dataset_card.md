@@ -1,5 +1,7 @@
 # RNEE-Bench dataset card
 
+For the current manuscript's data, tables and figures, see the [paper resource guide](../energy/README.md). This page describes the earlier construction release.
+
 ## Purpose
 
 RNEE-Bench supports audited research on road-network-semantic vehicle energy estimation under leakage-controlled out-of-distribution splits. It is not a fleet-monitoring product, a causal road-infrastructure study, or evidence of transfer to unobserved fleets or vehicle classes.

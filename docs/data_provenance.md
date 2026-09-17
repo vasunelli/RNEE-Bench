@@ -1,5 +1,7 @@
 # Data provenance and claim boundaries
 
+For the current manuscript's data, tables and figures, see the [paper resource guide](../energy/README.md). This page describes the earlier construction release.
+
 The vehicle-data lineage begins with official VED Dynamic and Static Data at commit `6baa4963782d515a67d32a5490bd5d11f5d9bf0d`. The inventory comprised 54 dynamic files, 22,436,808 records, 384 vehicles, and 32,552 trips. Static metadata supplied powertrain class; the reported primary analysis is restricted to internal-combustion-engine vehicles.
 
 The operational target gives valid direct Fuel Rate priority and otherwise uses MAF with available fuel-trim correction. It is reported in litres per nominal 60-s segment. The analysis contains 112,766 MAF-only segments and 21 direct-rate-only segments, with no mixed-source segments. Fuel Rate, MAF, STFT, and LTFT are excluded from predictors.

@@ -1,0 +1,11 @@
+Evaluation setting,Telemetry set,Telemetry-only MAE (mL),MAE with road attributes (mL),Relative MAE reduction (%),95% CI (%),Evaluation segments (n)
+Unseen trips,Base,17.047,15.804,7.29,"[5.72, 8.85]","17,376"
+Unseen trips,Base + RPM,15.027,14.495,3.54,"[1.81, 5.28]","17,376"
+Unseen vehicles,Base,17.239,16.365,5.07,"[4.34, 5.87]","112,787"
+Unseen vehicles,Base + RPM,15.738,15.607,0.84,"[-0.13, 1.80]","112,787"
+October 2018,Base,16.196,14.744,8.96,"[6.53, 11.40]","6,260"
+October 2018,Base + RPM,13.789,13.170,4.49,"[1.60, 7.37]","6,260"
+Held-out area,Base,11.399,11.484,-0.75,"[-4.15, 2.64]","10,550"
+Held-out area,Base + RPM,10.887,11.484,-5.48,"[-12.78, 1.81]","10,550"
+Motorway-dominant evaluation,Base,46.269,48.792,-5.45,"[-7.20, -3.70]","8,957"
+Motorway-dominant evaluation,Base + RPM,41.190,44.362,-7.70,"[-10.37, -5.03]","8,957"

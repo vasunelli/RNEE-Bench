@@ -1,0 +1,15 @@
+Component,Study specification
+Analysis sample,"112,787 nominal 60-s segments; 14,647 trips; 197 ICE vehicles"
+Compact telemetry B (8),"Duration, distance, speed mean/SD, ambient-temperature mean/SD, idle ratio, low-speed ratio"
+Telemetry with RPM B+Z (10),The same eight variables plus RPM mean and SD
+Kinematic summaries K (5),"Cumulative positive specific kinetic-energy change, positive-acceleration exposure, duration-weighted acceleration variability, observed stop-to-motion crossings and left-held cubic-speed moment"
+Historical road attributes R ,142 predefined candidates; 120–122 with finite training-set variation
+Hierarchy and regulation (18),"Road class, speed-limit summaries and distance shares"
+Physical properties and access (36),"Lane, surface, structural and access categories; tag coverage/missingness"
+Network topology (12),Duration-weighted network connectivity summaries
+Intersections (16),"Nearby intersection counts, encounters and exposure"
+Traffic control (16),"Control-object counts, encounters and exposure"
+Public transport (16),"Public-transport-object counts, encounters and exposure"
+Nearby places (20),"Point-of-interest counts, exposure and type diversity"
+Built environment (8),Built-environment and land-use context summaries
+Excluded predictors,"Exact coordinates and entity/route IDs; Fuel Rate, MAF, STFT, LTFT, Absolute Load and target-derived transformations"
