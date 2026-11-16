@@ -1,6 +1,6 @@
 # Reproduce the reported results
 
-The repository contains the current manuscript's tables, figures, analysis specifications and result-calculation code. Detailed predictions, selection inputs, memberships and resampling arrays are distributed in the immutable v0.2.0-energy archive.
+Use the scripts below to check the paper's tables and figures and recalculate results. The v0.2.0-energy archive contains predictions, estimator-selection inputs, memberships and resampling arrays.
 
 ## 1. Environment and compact resources
 
@@ -11,7 +11,7 @@ python -m pip install -r requirements.txt
 python scripts/verify_resources.py
 ```
 
-The compact check uses only the standard library. It checks public-file hashes, all five primary evaluation settings, the displayed Table 3 and Table 4 values, figure coverage and analysis specifications. It does not require the large archive.
+The resource check uses Python's standard library. It checks file hashes, all five primary evaluation settings, the displayed values in Tables 3 and 4, figure coverage and analysis specifications. You can run it before downloading the archive.
 
 ## 2. Download the scientific data
 
@@ -19,7 +19,7 @@ The compact check uses only the standard library. It checks public-file hashes, 
 python scripts/download_data.py
 ```
 
-The command downloads the archive identified in `data/release.json`, checks its complete SHA-256 and byte count, extracts it with 7-Zip, and checks every packaged file. It installs the 287-file payload under `data/energy/`. An existing valid installation is reused; an existing incomplete or modified installation is not overwritten.
+The command downloads the archive identified in `data/release.json`, checks its complete SHA-256 and byte count, extracts it with 7-Zip, and checks every packaged file. It installs 287 files in `data/energy/`. The script reuses a verified installation and refuses to overwrite a directory that fails verification.
 
 An archive already downloaded from the release can be used offline:
 
@@ -27,7 +27,7 @@ An archive already downloaded from the release can be used offline:
 python scripts/download_data.py --archive /path/to/RNEE-Bench-energy-v0.2.0.7z
 ```
 
-Use `--data-dir /path/to/energy` to install the payload elsewhere. Pass the same location to the result script. Paths with spaces should be quoted. The archive retains its published `energy/` layout internally; it should not be extracted over the repository root.
+Use `--data-dir /path/to/energy` to install the data elsewhere. Pass the same location to the result script. Paths with spaces should be quoted. The archive retains its published `energy/` layout internally; it should not be extracted over the repository root.
 
 ## 3. Recalculate reported quantities
 
@@ -47,4 +47,4 @@ Some earlier primary, paired-RPM, target-conditioned and speed-conditioned inter
 
 ## Rebuilding and fitting
 
-The above commands reproduce calculations from saved evidence. They are not a complete raw-VED-to-all-current-models training pipeline. Raw reconstruction and fitting additionally require upstream data, complete feature cohorts and the corresponding model environments. The three pinned packages in `requirements.txt` cover saved-result calculations only. [Source and code availability](sources.md) describes the separately preserved construction resources.
+Rebuilding the dataset and refitting the models require the upstream data, complete feature cohorts and the corresponding model environments. The packages in `requirements.txt` are for recalculating results from saved predictions. [Source and code availability](sources.md) describes the separately preserved construction resources.

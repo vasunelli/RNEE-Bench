@@ -1,6 +1,6 @@
 # RNEE-Bench
 
-Data and code accompanying **When do historical road attributes improve fuel-use estimation from real-world vehicle trajectories?**.
+Data and code accompanying **When do historical road attributes improve fuel-use estimation from real-world vehicle trajectories?**
 
 The study evaluates the added predictive value of historical road attributes using 112,787 nominal 60-s segments from 197 ICE vehicles and 14,647 naturalistic trips. Comparisons hold vehicle inputs and evaluation observations fixed while adding road attributes, across five evaluation settings and several fuel-accounting scales.
 
@@ -26,7 +26,7 @@ python scripts/download_data.py
 python scripts/reproduce_results.py
 ```
 
-The download command verifies the fixed [v0.2.0-energy data archive](https://github.com/vasunelli/RNEE-Bench/releases/tag/v0.2.0-energy) and installs its unchanged contents under `data/energy/`. The result script recalculates metrics and intervals from saved predictions and resampling records. It does not retrain models. Full raw-data reconstruction and current-study training are separate from this saved-result workflow; see [source and code availability](docs/sources.md).
+The download script verifies the [v0.2.0-energy archive](https://github.com/vasunelli/RNEE-Bench/releases/tag/v0.2.0-energy) and installs the data in `data/energy/`. The analysis script recalculates metrics and intervals from saved predictions and resampling records. See [source data and code availability](docs/sources.md) for the requirements for rebuilding the data and fitting the models.
 
 The target is OBD-derived fuel volume, predominantly MAF-based, without independent fuel-flow validation. Findings describe prediction within the evaluated data, not causal infrastructure effects or external-fleet transfer. The fixed-HGB primary unseen-vehicle gain of 5.07% remains separate from the 5.09% independent-selection sensitivity. See [the analysis protocol](docs/protocol.md) for input sets, partitioning and uncertainty definitions.
 
