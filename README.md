@@ -1,6 +1,6 @@
 # RNEE-Bench
 
-Data and code accompanying **Historical Road Attributes for Real-World Vehicle Fuel-Use Estimation: Dependence on Telemetry, Deployment Conditions, and Accounting Scale**.
+Data and code accompanying **When do historical road attributes improve fuel-use estimation from real-world vehicle trajectories?**.
 
 The study evaluates the added predictive value of historical road attributes using 112,787 nominal 60-s segments from 197 ICE vehicles and 14,647 naturalistic trips. Comparisons hold vehicle inputs and evaluation observations fixed while adding road attributes, across five evaluation settings and several fuel-accounting scales.
 
