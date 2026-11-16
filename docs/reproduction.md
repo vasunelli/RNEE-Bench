@@ -19,7 +19,7 @@ The resource check uses Python's standard library. It checks file hashes, all fi
 python scripts/download_data.py
 ```
 
-The command downloads the archive identified in `data/release.json`, checks its complete SHA-256 and byte count, extracts it with 7-Zip, and checks every packaged file. It installs 287 files in `data/energy/`. The script reuses a verified installation and refuses to overwrite a directory that fails verification.
+The command downloads the archive identified in `data/release.json`, checks its checksum and file size, extracts it with 7-Zip, and checks every packaged file. It installs 287 files in `data/energy/`. The script reuses a verified installation and refuses to overwrite a directory that fails verification.
 
 An archive already downloaded from the release can be used offline:
 

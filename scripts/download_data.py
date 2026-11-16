@@ -35,7 +35,7 @@ def validate_payload(root, spec):
 
 def validate_archive(path, spec):
     if path.stat().st_size != spec['bytes'] or digest(path) != spec['sha256']:
-        raise ValueError('Archive size or SHA-256 differs from data/release.json.')
+        raise ValueError('Archive size or checksum does not match data/release.json.')
 
 
 def install(archive, target, spec):

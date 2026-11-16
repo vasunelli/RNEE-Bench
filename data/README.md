@@ -4,4 +4,4 @@ Run `python scripts/download_data.py` from the repository root. The command veri
 
 The archive contains predictions, partition and trip/block memberships, estimator-selection inputs, kinematic variables, resampling arrays and figure data. The scripts verify the extracted files before calculating results. The installer reuses a verified copy and refuses to overwrite a directory that fails verification.
 
-[checksums.json](checksums.json) lists the published SHA-256 values for paths relative to `data/energy/`.
+[checksums.json](checksums.json) lists the published checksums for paths relative to `data/energy/`.
